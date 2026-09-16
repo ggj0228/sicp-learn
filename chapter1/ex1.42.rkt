@@ -42,13 +42,11 @@
 
 
 (define (square x) (* x x))
+(define (double f)
+  (lambda (x) (f (f x))))
 
-(define (compose f g)
-  (lambda (x)
-    (f(g x))))
 
-((compose square inc) 6)
+(((double (double double)) inc) 5)
 
-  
 
 

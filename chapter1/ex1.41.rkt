@@ -42,13 +42,27 @@
 
 
 (define (square x) (* x x))
-
-(define (compose f g)
-  (lambda (x)
-    (f(g x))))
-
-((compose square inc) 6)
-
-  
+(define (double f)
+  (lambda (x) (f (f x))))
 
 
+(((double (double double)) inc) 5)
+
+
+#|
+(double double) means f -> f(f(f(f x))).
+
+If we simply define (double double) as 4x,
+then the next process becomes:
+
+((4x (4x inc)) 5)
+
+The inner (4x inc) creates a procedure that applies inc 4 times.
+Then the outer 4x repeats that whole procedure 4 times.
+
+So inc is applied 4 * 4 = 16 times,
+and the result is 21, not 13.
+
+Keep in mind that (double double) is a new procedure
+that repeats another procedure 4 times.
+|#
