@@ -74,8 +74,8 @@
 
 (define (good? n)
   (lambda (x)
-    (< (abs (- (/ (* x x) n) 1)) 0.001)))
-    
+    (< (abs (- (* x x) n)) 0.00001)))
+
 (define (improve n)
   (lambda (x)
     (/ (+ x (/ n x)) 2)))
@@ -85,7 +85,7 @@
 
 (define (fixed-good? f)
   (lambda (x)
-    (< (abs (- (/ (f x) x) 1)) 0.001)))
+    (< (abs (- (f x) x)) tolerance)))
 
 (define (fixed-improve f)
   (lambda (x)
