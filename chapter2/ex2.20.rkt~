@@ -4,7 +4,8 @@
 
 (define (same-parity . w)
   (define (iter items parity)
-    (cond ((null? items) nil)
+    (cond ((null? items)
+           nil)
           ((= (remainder (car items) 2) parity)
            (cons (car items)
                  (iter (cdr items) parity)))
